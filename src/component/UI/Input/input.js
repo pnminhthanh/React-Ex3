@@ -7,17 +7,33 @@ export const Input = props => {
   switch (props.elementtype) {
     case 'input': {
       inputElement = (
-        <input className="input" {...props.elementConfig} value={props.value} />
+        <input
+          className="input"
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changed}
+        />
       );
       break;
     }
     case 'textarea': {
-      inputElement = <textarea {...props.elementConfig} value={props.value} />;
+      inputElement = (
+        <textarea
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changed}
+        />
+      );
       break;
     }
     default:
       inputElement = (
-        <input className="input" {...props.elementConfig} value={props.value} />
+        <input
+          className="input"
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changed}
+        />
       );
   }
 

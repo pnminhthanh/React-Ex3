@@ -28,6 +28,15 @@ class RegisterForm extends Component {
     };
   }
 
+  inputChangeHandler = (e, identifier) => {
+    console.log(e.target.value + ' ' + identifier);
+    const updatedLoginForm = { ...this.state.loginForm };
+    var updatedInputElement = { ...updatedLoginForm[identifier] };
+    updatedInputElement.value = e.target.value;
+    updatedLoginForm[identifier] = updatedInputElement;
+    this.setState({ loginForm: updatedLoginForm });
+  };
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.loginForm) {
@@ -44,12 +53,15 @@ class RegisterForm extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            changed={e => {
+              this.inputChangeHandler(e, formElement.id);
+            }}
           />
         ))}
         <Button elementType="success" name="login" />
         <div>
           <p>
-            Not registered? <a href="">Create an account</a>
+            Not registered? <a href="/register">Create an account</a>
           </p>
         </div>
       </form>
