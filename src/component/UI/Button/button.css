@@ -1,0 +1,36 @@
+.btn {
+  display: block;
+  border: none;
+  height: 50px;
+  padding: 10px;
+  color: black;
+  background-color: lightslategray;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: grey;
+  color: white;
+}
+
+.btn-success {
+  background-color: #00b241;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: darkgreen;
+  color: white;
+}
+
+.btn-primary {
+  background-color: lightskyblue;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  color: white;
+}
