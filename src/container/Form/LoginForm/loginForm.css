@@ -6,10 +6,10 @@
   background-color: #66bd4a;
 }
 
-.form {
-  height: 50%;
+.login-page .form {
+  height: auto;
   width: 40%;
-  box-shadow: 1px 1px 2px black;
+  box-shadow: 1px 5px 10px darkgreen;
   background-color: white;
   text-align: center;
   padding: 20px;

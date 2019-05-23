@@ -41,6 +41,15 @@ export const Input = props => {
     <div>
       <label>{props.label}</label>
       {inputElement}
+      <p
+        className={
+          (props.touched && props.invalid) || props.showErrorMessage
+            ? 'errorMsg show'
+            : 'errorMsg'
+        }
+      >
+        {props.errorMsg}
+      </p>
     </div>
   );
 };

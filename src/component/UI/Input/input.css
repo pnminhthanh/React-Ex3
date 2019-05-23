@@ -13,3 +13,15 @@
   display: block;
   font: inherit;
 }
+
+.errorMsg {
+  display: none;
+}
+
+.show {
+  display: block;
+  color: red;
+  font-size: 11px;
+  text-align: left;
+  margin-top: -10px;
+}

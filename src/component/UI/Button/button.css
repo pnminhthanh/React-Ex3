@@ -8,6 +8,7 @@
   text-transform: uppercase;
   box-sizing: border-box;
   width: 100%;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -33,4 +34,8 @@
 .btn-primary:hover {
   background-color: #0069d9;
   color: white;
+}
+
+.submitButton {
+  margin-top: 40px;
 }

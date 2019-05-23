@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
-import RegisterForm from '../../container/Form/RegisterForm/registerForm';
-import LoginForm from '../../container/Form/LoginForm/loginForm';
+import { RegisterForm } from '../../component/Form/RegisterForm/registerForm';
+import { LoginForm } from '../../component/Form/LoginForm/loginForm';
 import Page404 from '../../component/Page404/page404';
 function App() {
   return (
@@ -10,17 +10,14 @@ function App() {
         <Switch>
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/" component={Page404} />
+          <Route exact path="/404" component={Page404} />
           <PrivateRoute
             path="/manage/products"
             // component={HomePageAdminEvent}
           />
-          <Route component={Page404} />
+          {/* <Route component={Page404} /> */}
         </Switch>
       </BrowserRouter>
-      {/* <RegisterForm /> */}
-
-      <LoginForm />
     </div>
   );
 }

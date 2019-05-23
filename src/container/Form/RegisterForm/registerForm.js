@@ -1,40 +1,65 @@
 import React, { Component } from 'react';
 import './registerForm.css';
+import { CheckValidation } from '../../../utils/Validation/FormValidation';
 import { Input } from '../../../component/UI/Input/input';
 import { Button } from '../../../component/UI/Button/button';
+import axios from 'axios';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      registerForm: {
-        username: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'text',
-            placeholder: 'Username',
-          },
-          value: '',
-        },
-        password: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'text',
-            placeholder: 'Password',
-          },
-          value: '',
-        },
-        confirmPassword: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'text',
-            placeholder: 'Confirm password',
-          },
-          value: '',
-        },
-      },
+      registerForm: props.formData,
+      isFormValid: false,
+      errorMsg: false,
     };
   }
+
+  inputChangeHandler = (e, identifier) => {
+    const updatedRegisterForm = { ...this.state.registerForm };
+    var updatedInputElement = { ...updatedRegisterForm[identifier] };
+    updatedInputElement.value = e.target.value;
+    updatedInputElement.valid = CheckValidation(
+      updatedInputElement.value,
+      updatedInputElement.validation
+    );
+    updatedInputElement.touched = true;
+    updatedRegisterForm[identifier] = updatedInputElement;
+
+    let formValid = false;
+    for (let identifier in updatedRegisterForm) {
+      formValid = updatedRegisterForm[identifier].valid;
+    }
+    this.setState({
+      registerForm: updatedRegisterForm,
+      isFormValid: formValid,
+    });
+  };
+
+  submitForm = event => {
+    event.preventDefault();
+    const registerForm = { ...this.state.registerForm };
+    const formData = {};
+    for (let key in registerForm) {
+      formData[key] = registerForm[key].value;
+    }
+    this.register(formData);
+  };
+
+  register = formData => {
+    axios
+      .post('https://jsonplaceholder.typicode.com/posts', formData)
+      .then(response => {
+        console.log(response);
+        localStorage.setItem('username', formData.username);
+        localStorage.setItem('password', formData.password);
+        this.props.history.push('/login');
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ errorMsg: true });
+      });
+  };
 
   render() {
     const formElementsArray = [];
@@ -44,6 +69,7 @@ class LoginForm extends Component {
         config: this.state.registerForm[key],
       });
     }
+    console.log(formElementsArray);
     let form = (
       <form>
         {formElementsArray.map(formElement => (
@@ -52,9 +78,21 @@ class LoginForm extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            changed={e => {
+              this.inputChangeHandler(e, formElement.id);
+            }}
+            errorMsg={formElement.config.errorMessage}
+            invalid={!formElement.config.valid}
+            touched={formElement.config.touched}
+            showErrorMessage={this.state.errorMsg}
           />
         ))}
-        <Button elementType="primary" name="register" />
+        <Button
+          elementType="primary"
+          name="register"
+          disabled={!this.state.isFormValid}
+          click={this.submitForm}
+        />
       </form>
     );
     return (
@@ -65,4 +103,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default RegisterForm;
