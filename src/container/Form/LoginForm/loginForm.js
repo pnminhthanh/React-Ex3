@@ -47,12 +47,12 @@ class LoginForm extends Component {
 
   login = formData => {
     axios
-      .post('http://180.16.10.10:8086/login', formData)
+      .post('/login', formData)
       .then(response => {
         console.log(response);
         localStorage.setItem('isUserAuthenticated', true);
         localStorage.setItem('username', formData.username);
-        this.props.history.push('/404');
+        this.props.history.push('/manage');
       })
       .catch(error => {
         console.log(error);
@@ -91,7 +91,7 @@ class LoginForm extends Component {
           name="login"
           click={this.submitForm}
         />
-        <div>
+        <div className="para-footer">
           <p>
             Not registered? <a href="/register">Create an account</a>
           </p>

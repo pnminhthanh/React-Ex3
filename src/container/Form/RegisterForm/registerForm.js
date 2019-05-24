@@ -48,9 +48,8 @@ class RegisterForm extends Component {
 
   register = formData => {
     axios
-      .post('https://jsonplaceholder.typicode.com/posts', formData)
+      .post('/register', formData)
       .then(response => {
-        console.log(response);
         localStorage.setItem('username', formData.username);
         localStorage.setItem('password', formData.password);
         this.props.history.push('/login');

@@ -1,19 +1,5 @@
 export const registerFormData = {
-  fullname: {
-    elementType: 'input',
-    elementConfig: {
-      type: 'text',
-      placeholder: 'Fullname...',
-    },
-    value: '',
-    validation: {
-      required: true,
-    },
-    valid: false,
-    touched: false,
-    errorMessage: 'Please enter your fullname!',
-  },
-  username: {
+  UserName: {
     elementType: 'input',
     elementConfig: {
       type: 'text',
@@ -27,7 +13,7 @@ export const registerFormData = {
     touched: false,
     errorMessage: 'Please enter your username!',
   },
-  password: {
+  PassWord: {
     elementType: 'input',
     elementConfig: {
       type: 'password',
@@ -60,7 +46,7 @@ export const registerFormData = {
     touched: false,
     errorMessage: 'Please repeat exactly your password!',
   },
-  phoneNumber: {
+  PhoneNumber: {
     elementType: 'input',
     elementConfig: {
       type: 'phone',
@@ -76,7 +62,7 @@ export const registerFormData = {
     touched: false,
     errorMessage: 'Password must be a number and have max 10 characters!',
   },
-  email: {
+  Email: {
     elementType: 'input',
     elementConfig: {
       type: 'email',
