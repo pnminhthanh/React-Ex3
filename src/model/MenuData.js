@@ -4,13 +4,13 @@ export const MenuData = {
     displayText: 'Product',
     icon: 'profile',
     theme: 'filled',
-    path: 'management/users',
+    path: '/products',
   },
   user: {
     key: 2,
     displayText: 'User',
     icon: 'user',
     theme: '',
-    path: 'management/products',
+    path: '/users',
   },
 };

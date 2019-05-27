@@ -1,18 +1,18 @@
-import { Layout, Menu } from 'antd';
+import { Layout, Icon } from 'antd';
 import React from 'react';
 import './Header.css';
 const { Header } = Layout;
 
 const HeaderLayout = props => {
   return (
-    // <Header className="header">
-    //   <Menu className="menu" theme="dark">
-    //     <Menu.Item key="1" onClick={props.click}>
-    //       Logout
-    //     </Menu.Item>
-    //   </Menu>
-    // </Header>
-    <Header className="header" theme="dark" style={{ padding: 0 }} />
+    <Header className="header" theme="dark" style={{ padding: 0 }}>
+      <div className="usernameDiv">
+        <div className="iconLogoutDiv" onClick={props.logout}>
+          <Icon type="logout" />
+        </div>
+        <div className="username">{localStorage.username}</div>
+      </div>
+    </Header>
   );
 };
 

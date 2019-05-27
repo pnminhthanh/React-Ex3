@@ -14,8 +14,7 @@ function App() {
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/404" component={Page404} />
-          <PrivateRoute path="/manage" component={LayoutBuilder} />
-          <Route component={LoginForm} />
+          <PrivateRoute path="/" component={LayoutBuilder} />
         </Switch>
       </BrowserRouter>
     </div>

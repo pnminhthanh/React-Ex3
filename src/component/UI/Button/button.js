@@ -5,7 +5,7 @@ export const Button = props => {
   let buttonElement = null;
 
   switch (props.elementType) {
-    case 'success': {
+    case 'submit': {
       buttonElement = (
         <button
           className="btn btn-success"
@@ -17,10 +17,34 @@ export const Button = props => {
       );
       break;
     }
-    case 'primary': {
+    case 'add': {
       buttonElement = (
         <button
           className="btn btn-primary"
+          disabled={props.disabled}
+          onClick={props.click}
+        >
+          {props.name}
+        </button>
+      );
+      break;
+    }
+    case 'edit': {
+      buttonElement = (
+        <button
+          className="btn btn-edit"
+          disabled={props.disabled}
+          onClick={props.click}
+        >
+          {props.name}
+        </button>
+      );
+      break;
+    }
+    case 'delete': {
+      buttonElement = (
+        <button
+          className="btn btn-danger"
           disabled={props.disabled}
           onClick={props.click}
         >
@@ -39,5 +63,5 @@ export const Button = props => {
     }
   }
 
-  return <div className="submitButton">{buttonElement}</div>;
+  return <div>{buttonElement}</div>;
 };

@@ -52,7 +52,7 @@ class LoginForm extends Component {
         console.log(response);
         localStorage.setItem('isUserAuthenticated', true);
         localStorage.setItem('username', formData.username);
-        this.props.history.push('/manage');
+        this.props.history.push('/');
       })
       .catch(error => {
         console.log(error);
@@ -87,7 +87,7 @@ class LoginForm extends Component {
         ))}
         <Button
           disabled={!this.state.isFormValid}
-          elementType="success"
+          elementType="submit"
           name="login"
           click={this.submitForm}
         />

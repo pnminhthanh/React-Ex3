@@ -87,7 +87,7 @@ class RegisterForm extends Component {
           />
         ))}
         <Button
-          elementType="primary"
+          elementType="submit"
           name="register"
           disabled={!this.state.isFormValid}
           click={this.submitForm}

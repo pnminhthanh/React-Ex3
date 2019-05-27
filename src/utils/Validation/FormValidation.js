@@ -28,8 +28,8 @@ export function CheckValidation(values, validation) {
     password = values;
   }
   if (validation.isEqualPassword) {
-    var passwordFeild = 'password';
-    isValid = values === this.state.Form[passwordFeild].value && isValid;
+    var passwordField = 'password';
+    isValid = values === this.state.Form[passwordField].value && isValid;
   }
 
   return isValid;

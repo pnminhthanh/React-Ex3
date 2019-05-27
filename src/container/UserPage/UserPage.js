@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../Table/Table';
-import axios from 'axios';
-import PopUpBuilder from '../PopUpBuilder/PopUpBuilder';
+import PopupBuilder from '../PopupBuilder/PopupBuilder';
 import { connect } from 'react-redux';
-import { Button } from '../../component/UI/Button/button';
+import { insertUserFromData } from '../../model/InsertUserFormData';
 import 'antd/dist/antd.css';
+import './UserPage.css';
 import {
   fetchUsers,
   deleteUser,
@@ -38,101 +38,90 @@ const columns = [
   },
 ];
 
-const data = axios.get('/users');
-
 function UserPage(props) {
-  // const [openModal, setOpenModal] = useState({ isOpen: false, data: {} });
+  const [openModal, setOpenModal] = useState({ isOpen: false, data: {} });
 
-  // useEffect(() => {
-  //   props.dispatch(fetchUsers());
-  // }, []);
+  useEffect(() => {
+    props.dispatch(fetchUsers());
+    console.log(props.users.keys);
+  }, []);
 
-  // const viewDetails = item => {
-  //   var modaldata = {
-  //     type: 'view',
-  //     title: 'Product details',
-  //     item: item,
-  //   };
-  //   setOpenModal({ isOpen: true, data: modaldata });
-  // };
+  const viewDetails = item => {
+    var modalData = {
+      type: 'view',
+      title: 'Product details',
+      item: item,
+    };
+    setOpenModal({ isOpen: true, data: modalData });
+  };
 
-  // const deleteConfirm = item => {
-  //   var modaldata = {
-  //     type: 'delete',
-  //     title: 'Delete Product',
-  //     item: item,
-  //     deleteMessage: 'Do you want to delete User ' + item.UserName + '?',
-  //   };
-  //   setOpenModal({ isOpen: true, data: modaldata });
-  // };
+  const deleteConfirm = item => {
+    var modalData = {
+      type: 'delete',
+      title: 'Delete Product',
+      item: item,
+      deleteMessage: 'Do you want to delete User ' + item.UserName + '?',
+    };
+    setOpenModal({ isOpen: true, data: modalData });
+  };
 
-  // const deleteuser = () => {
-  //   props.dispatch(deleteUser(openModal.data.item.UserID));
-  //   setOpenModal({ isOpen: false, data: {} });
-  // };
+  const deleteuser = () => {
+    props.dispatch(deleteUser(openModal.data.item.UserID));
+    setOpenModal({ isOpen: false, data: {} });
+  };
 
-  // const create = () => {
-  //   var modaldata = {
-  //     type: 'insert',
-  //     title: 'New User',
-  //     item: {},
-  //   };
-  //   setOpenModal({ isOpen: true, data: modaldata });
-  // };
+  const create = () => {
+    var modalData = {
+      type: 'insert',
+      title: 'New User',
+      item: {},
+    };
+    setOpenModal({ isOpen: true, data: modalData });
+  };
 
-  // const update = item => {
-  //   var modaldata = {
-  //     type: 'update',
-  //     title: 'Update User ' + item.UserName,
-  //     item: item,
-  //   };
-  //   setOpenModal({ isOpen: true, data: modaldata });
-  // };
+  const update = item => {
+    var modalData = {
+      type: 'update',
+      title: 'Update User ' + item.UserName,
+      item: item,
+    };
+    setOpenModal({ isOpen: true, data: modalData });
+  };
 
-  // const Submit = item => {
-  //   if (openModal.data.item.UserID) {
-  //     item.UserID = openModal.data.item.UserID;
-  //   }
-  //   props.dispatch(submitUsers(item));
-  //   setOpenModal({ isOpen: false, data: {} });
-  // };
-
-  // return (
-  //   <div className="Userdiv">
-  //     <div className="pageTitle">Users Management Page</div>
-  //     <div className="buttondiv">
-  //       <Button btnType="action" text="Create" clicked={create} />
-  //       <Table
-  //         columns={columns}
-  //         dataSource={props.users}
-  //         viewDetails={viewDetails}
-  //         Delete={deleteConfirm}
-  //         Update={update}
-  //       />
-  //     </div>
-  //     <PopUpBuilder
-  //       feilds={ColunmModel}
-  //       data={openModal.data}
-  //       delete={deleteuser}
-  //       submit={Submit}
-  //       closeModal={() => setOpenModal({ isOpen: false, data: {} })}
-  //       visible={openModal.isOpen}
-  //     />
-  //   </div>
-  // );
+  const Submit = item => {
+    if (openModal.data.item.UserID) {
+      item.UserID = openModal.data.item.UserID;
+    }
+    props.dispatch(submitUsers(item));
+    setOpenModal({ isOpen: false, data: {} });
+  };
 
   return (
-    <div>
-      <h1>Users Table Data</h1>
-      <Button elementType="success" name="Add User" />
-      <Table columns={columns} />
+    <div className="userPage">
+      <div className="header">
+        <h1 className="tittle">Users Table Data</h1>
+        <button onClick={create}>Add User</button>
+      </div>
+      <Table
+        columns={columns}
+        dataSource={props.users}
+        viewDetails={viewDetails}
+        Delete={deleteConfirm}
+        Update={update}
+      />
+      <PopupBuilder
+        fields={insertUserFromData}
+        data={openModal.data}
+        delete={deleteuser}
+        submit={Submit}
+        closeModal={() => setOpenModal({ isOpen: false, data: {} })}
+        visible={openModal.isOpen}
+      />
     </div>
   );
 }
-//  const mapStateToProps = state => ({
-//     users: state.userReducer.users
-//   });
+const mapStateToProps = state => ({
+  users: state.userReducer.users,
+});
 
-//   export default connect(mapStateToProps)(UsersPage);
-
-export default UserPage;
+export default connect(mapStateToProps)(UserPage);

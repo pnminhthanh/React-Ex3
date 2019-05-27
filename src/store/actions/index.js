@@ -1,4 +1,4 @@
-import * as actionType from './ActionType';
+import * as actionType from './actionTypes';
 
 export const fetchProductsBegin = () => ({
   type: actionType.FETCH_PRODUCTS_BEGIN,

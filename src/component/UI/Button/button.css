@@ -4,11 +4,10 @@
   height: 50px;
   padding: 10px;
   color: black;
-  background-color: lightslategray;
-  text-transform: uppercase;
+  border-color: lightslategray;
   box-sizing: border-box;
-  width: 100%;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .btn:hover {
@@ -17,6 +16,8 @@
 }
 
 .btn-success {
+  width: 100%;
+  margin-top: 30px;
   background-color: #00b241;
   color: white;
 }
@@ -27,8 +28,16 @@
 }
 
 .btn-primary {
+  width: 100%;
   background-color: lightskyblue;
   color: white;
+  display: inline;
+  float: right;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -37,5 +46,4 @@
 }
 
 .submitButton {
-  margin-top: 30px;
 }

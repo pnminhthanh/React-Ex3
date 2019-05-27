@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Modal } from 'antd';
-import Button from '../../components/UI/Button/Button';
-import './PopUpBuilder.css';
+import './PopupBuilder.css';
 import FormInsert from './FormInsert/FormInsert';
 
-class PopUpBuilder extends Component {
+class PopupBuilder extends Component {
   details = () => {
     var ElementsArray = [];
     for (var item in this.props.data.item) {
@@ -29,7 +28,7 @@ class PopUpBuilder extends Component {
       <>
         {items}
         <div className="customfooter">
-          <Button text="Close" clicked={this.props.closeModal} />
+          <button onClick={this.props.closeModal}>X</button>
         </div>
       </>
     );
@@ -44,15 +43,15 @@ class PopUpBuilder extends Component {
         {' '}
         {deleteBox}
         <div className="customfooter">
-          <Button btnType="delete" text="OK" clicked={this.props.delete} />
-          <Button text="Cancle" clicked={this.props.closeModal} />
+          <button onClick={this.props.delete}>OK</button>
+          <button onClick={this.props.closeModal}>Cancle</button>
         </div>
       </>
     );
   };
 
   getForm = isnew => {
-    let newfi = this.props.feilds;
+    let newfi = this.props.fields;
     for (let item in newfi) {
       if (this.props.data.item[item]) {
         newfi[item].value = this.props.data.item[item];
@@ -65,14 +64,13 @@ class PopUpBuilder extends Component {
     let btnName = isnew ? 'Insert' : 'Update';
     return (
       <>
-        {' '}
         <FormInsert
-          feilds={newfi}
+          fields={newfi}
           valid={!isnew}
           btnActionName={btnName}
           close={this.props.closeModal}
           submit={this.props.submit}
-        />{' '}
+        />
       </>
     );
   };
@@ -111,4 +109,4 @@ class PopUpBuilder extends Component {
     );
   }
 }
-export default PopUpBuilder;
+export default PopupBuilder;
