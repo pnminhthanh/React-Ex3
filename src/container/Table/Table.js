@@ -123,7 +123,7 @@ class Table extends Component {
           <th className="action" />
           {this.getRows()}
         </table>
-        <div className="helptext">Double click on row to view more details</div>
+        <div className="helpText">Double click on row to view more details</div>
       </div>
     );
   }

@@ -6,14 +6,14 @@ import { CheckValidation } from '../../../utils/Validation/FormValidation';
 class FormInsert extends Component {
   state = {
     form: this.props.fields,
-    formIsValid: this.props.valid,
+    isFormValid: this.props.valid,
   };
 
   onSubmit = event => {
     event.preventDefault();
     const formData = {};
-    for (let formElementIdentifier in this.state.Form) {
-      formData[formElementIdentifier] = this.state.Form[
+    for (let formElementIdentifier in this.state.form) {
+      formData[formElementIdentifier] = this.state.form[
         formElementIdentifier
       ].value;
     }
@@ -32,9 +32,10 @@ class FormInsert extends Component {
     updatedInputElement.touched = true;
     updatedForm[identifier] = updatedInputElement;
 
-    let formValid = false;
+    let formValid = true;
     for (let identifier in updatedForm) {
       formValid = updatedForm[identifier].valid && formValid;
+      console.log(formValid);
     }
     this.setState({ form: updatedForm, isFormValid: formValid });
   };
@@ -54,7 +55,7 @@ class FormInsert extends Component {
       <form id="forminsert">
         {formElementsArray.map(formElement => (
           <>
-            <p>{formElement.id}:</p>
+            <p>{formElement.config.text}:</p>
             <div className="inputelement">
               <Input
                 key={formElement.id}
@@ -77,11 +78,15 @@ class FormInsert extends Component {
     return (
       <>
         {form}
-        <div className="customfooter">
-          <button disabled={!this.state.formIsValid} clicked={this.onSubmit}>
+        <div className="customFooter">
+          <button onClick={this.props.close}>Cancel</button>
+          <button
+            disabled={!this.state.isFormValid}
+            onClick={this.onSubmit}
+            className="btnSubmit"
+          >
             {this.props.btnActionName}
           </button>
-          <button clicked={this.props.close}>Cancel</button>
         </div>
       </>
     );

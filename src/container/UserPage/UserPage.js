@@ -42,14 +42,14 @@ function UserPage(props) {
   const [openModal, setOpenModal] = useState({ isOpen: false, data: {} });
 
   useEffect(() => {
-    props.dispatch(fetchUsers());
+    props.getUsers();
     console.log(props.users.keys);
   }, []);
 
   const viewDetails = item => {
     var modalData = {
       type: 'view',
-      title: 'Product details',
+      title: 'User details',
       item: item,
     };
     setOpenModal({ isOpen: true, data: modalData });
@@ -66,14 +66,14 @@ function UserPage(props) {
   };
 
   const deleteuser = () => {
-    props.dispatch(deleteUser(openModal.data.item.UserID));
+    props.deleteUser(openModal.data.item.UserID);
     setOpenModal({ isOpen: false, data: {} });
   };
 
   const create = () => {
     var modalData = {
       type: 'insert',
-      title: 'New User',
+      title: 'Add New User',
       item: {},
     };
     setOpenModal({ isOpen: true, data: modalData });
@@ -92,7 +92,7 @@ function UserPage(props) {
     if (openModal.data.item.UserID) {
       item.UserID = openModal.data.item.UserID;
     }
-    props.dispatch(submitUsers(item));
+    props.postUser(item);
     setOpenModal({ isOpen: false, data: {} });
   };
 
@@ -124,4 +124,13 @@ const mapStateToProps = state => ({
   users: state.userReducer.users,
 });
 
-export default connect(mapStateToProps)(UserPage);
+const mapDispatchToProps = dispatch => ({
+  getUsers: () => dispatch(fetchUsers()),
+  postUser: item => dispatch(submitUsers(item)),
+  deleteUser: id => dispatch(deleteUser(id)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserPage);

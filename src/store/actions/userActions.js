@@ -7,7 +7,6 @@ import axios from 'axios';
 
 export function fetchUsers() {
   return dispatch => {
-    console.log('tt');
     dispatch(fetchUsersBegin());
     return fetch('/users')
       .then(res => res.json())

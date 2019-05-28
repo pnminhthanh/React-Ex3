@@ -1,6 +1,7 @@
 export const insertUserFromData = {
   UserName: {
     elementType: 'input',
+    text: 'Username',
     elementConfig: {
       type: 'text',
       placeholder: 'Username...',
@@ -15,8 +16,9 @@ export const insertUserFromData = {
   },
   PassWord: {
     elementType: 'input',
+    text: 'Password',
     elementConfig: {
-      type: 'password',
+      type: 'text',
       placeholder: 'Password...',
     },
     value: '',
@@ -32,6 +34,7 @@ export const insertUserFromData = {
   },
   PhoneNumber: {
     elementType: 'input',
+    text: 'Phonenumber',
     elementConfig: {
       type: 'phone',
       placeholder: 'Phonenumber...',
@@ -48,6 +51,7 @@ export const insertUserFromData = {
   },
   Email: {
     elementType: 'input',
+    text: 'Email',
     elementConfig: {
       type: 'email',
       placeholder: 'Email...',

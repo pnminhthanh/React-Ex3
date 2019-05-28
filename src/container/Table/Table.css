@@ -28,11 +28,11 @@ tr:hover {
   width: 5px !important;
 }
 
-.helptext {
+.helpText {
   margin-left: 10px;
   margin-top: 10px;
   font-style: bold;
-  color: #0da4f0dc;
+  color: #bdbdbddc;
 }
 
 .action {
@@ -41,6 +41,8 @@ tr:hover {
 }
 
 .btn-delete {
+  width: 50%;
+  box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid transparent;
   color: #f5222d;
@@ -60,8 +62,9 @@ tr:hover {
 }
 
 .btn-edit {
+  width: 40%;
+  box-sizing: border-box;
   height: 32px;
-  padding: 0 15px;
   font-size: 14px;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.65);

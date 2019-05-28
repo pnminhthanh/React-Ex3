@@ -1,8 +1,20 @@
 import React from 'react';
 import './input.css';
+import { Menu, Dropdown, Button, Icon } from 'antd';
 
 export const Input = props => {
   let inputElement = null;
+
+  // const menu = (
+  //   <Menu>
+  //     {props.dropdownItems.map(item => (
+  //       <Menu.Item key={item.key}>
+  //         <Icon type={item.type} />
+  //         {item.name}
+  //       </Menu.Item>
+  //     ))}
+  //   </Menu>
+  // );
 
   switch (props.elementtype) {
     case 'input': {
@@ -26,6 +38,18 @@ export const Input = props => {
       );
       break;
     }
+
+    // case 'dropdown': {
+    //   inputElement = (
+    //     <Dropdown overlay={menu}>
+    //       <Button>
+    //         {props.text} <Icon type="down" />
+    //       </Button>
+    //     </Dropdown>
+    //   );
+    //   break;
+    // }
+
     default:
       inputElement = (
         <input

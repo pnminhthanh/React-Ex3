@@ -4,9 +4,10 @@ import { Layout } from 'antd';
 import Sider from '../../component/UI/Sider/Sider';
 import Header from '../../component/UI/Header/Header';
 import Footer from '../../component/UI/Footer/Footer';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import UserPage from '../UserPage/UserPage';
-import ProductPage from '../ProductPage/Product';
+import ProductPage from '../ProductPage/ProductPage';
+import { MenuData } from '../../model/MenuData';
 
 const { Content } = Layout;
 export class LayoutBuilder extends Component {
@@ -16,6 +17,28 @@ export class LayoutBuilder extends Component {
       collapsed: false,
     };
   }
+
+  setDefaultPage = () => {
+    var itemKey = localStorage.chooseMenuItem;
+    if (itemKey == undefined) {
+      localStorage.setItem('chooseMenuItem', '1');
+    }
+    const menuItemArray = [];
+
+    for (let key in MenuData) {
+      menuItemArray.push({
+        id: key,
+        config: MenuData[key],
+      });
+    }
+
+    var path =
+      menuItemArray[parseInt(localStorage.chooseMenuItem) - 1].config.path;
+
+    if (this.props.location.pathname === '/')
+      return <Redirect from="/" to={path} />;
+    else this.props.history.push('/404');
+  };
 
   collapsedToggleHandler = () => {
     this.setState({ collapsed: !this.state.collapsed });
@@ -50,8 +73,11 @@ export class LayoutBuilder extends Component {
               minHeight: 580,
             }}
           >
-            <Route exact path="/products" component={ProductPage} />
-            <Route exact path="/users" component={UserPage} />
+            <Switch>
+              <Route exact path="/products" component={ProductPage} />
+              <Route exact path="/users" component={UserPage} />
+              <Route exact path="/" component={this.setDefaultPage} />
+            </Switch>
           </Content>
           <Footer />
         </Layout>

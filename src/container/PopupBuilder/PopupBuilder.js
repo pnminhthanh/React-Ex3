@@ -27,7 +27,7 @@ class PopupBuilder extends Component {
     return (
       <>
         {items}
-        <div className="customfooter">
+        <div className="customFooter">
           <button onClick={this.props.closeModal}>X</button>
         </div>
       </>
@@ -40,11 +40,12 @@ class PopupBuilder extends Component {
     );
     return (
       <>
-        {' '}
         {deleteBox}
-        <div className="customfooter">
-          <button onClick={this.props.delete}>OK</button>
+        <div className="customFooter">
           <button onClick={this.props.closeModal}>Cancle</button>
+          <button onClick={this.props.delete} className="btnDelete">
+            OK
+          </button>
         </div>
       </>
     );
